@@ -108,7 +108,6 @@ RUN set -eux; \
 	\
 	redis-cli --version; \
 	redis-server --version
-USER 10014
 
 
 RUN mkdir /data && chown redis:redis /data
@@ -120,3 +119,5 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 6379
 CMD ["redis-server"]
+USER 10014
+

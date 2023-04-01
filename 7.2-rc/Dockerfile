@@ -1,7 +1,7 @@
 FROM debian:bullseye-slim
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -r -g 10014 redis && useradd -r -g redis -u 10014 redis
+RUN groupadd -r -g 999 redis && useradd -r -g redis -u 999 redis
 
 # grab gosu for easy step-down from root
 # https://github.com/tianon/gosu/releases
@@ -108,6 +108,8 @@ RUN set -eux; \
 	\
 	redis-cli --version; \
 	redis-server --version
+USER 10014
+
 
 RUN mkdir /data && chown redis:redis /data
 VOLUME /data
